@@ -130,10 +130,8 @@ describe Listing do
     context 'when listing created' do
       let(:user) { User.create(name: 'Tina Fey', host: false) }
       let(:other_user) { User.create(name: 'Not Tina Fey') }
-
       it 'changes user host status' do
         expect(user.host?).to eq(false)
-
         listing = Listing.create(address: '123 Main Street',
           listing_type: "private room",
           title: "Foo",
@@ -179,6 +177,7 @@ describe Listing do
       it 'does not change the host status to false' do
         expect(user.host?).to eq(true)
         first_listing.destroy
+        # byebug
         expect(user.reload.host?).to eq(true)
       end
     end
