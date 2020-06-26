@@ -1,5 +1,8 @@
 class Review < ActiveRecord::Base
   belongs_to :reservation
   belongs_to :guest, :class_name => "User"
-
+  validates :description, presence: true
+  validates :rating, presence: true
+  validates :reservation_id, presence: true
+  validates_with ReviewValidator
 end
